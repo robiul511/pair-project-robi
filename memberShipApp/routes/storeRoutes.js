@@ -25,6 +25,12 @@ router.post('/edit/:id', StoreController.postEditStore)
 
 router.get('/delete/:id', isAdmin, StoreController.getDestroyStore)
 
-router.post('/postEvent', )
+router.get('/postEvent/:id', StoreController.getPostEvent)
+router.post('/postEvent/:id', StoreController.postEventStore)
+
+
+router.get('/postEvent/succes', StoreController.getPostEventSucces)
+
+
 
 module.exports = router

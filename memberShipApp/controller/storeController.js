@@ -1,4 +1,5 @@
-const {Store} = require('../models/index')
+const {Store, User} = require('../models/index')
+const nodemailer = require('nodemailer')
 
 class StoreController {
     static getStoreList(req,res){
@@ -89,6 +90,61 @@ class StoreController {
         .catch(err => {
             res.send(err)
         })
+    }
+
+     //===========================================================
+
+     static getPostEvent(req, res){
+        let id = +req.params.id
+        
+        Store.findByPk(id)
+            .then(data => {
+                res.render('form-post-event', {data})
+            })
+            .catch(err => {
+                res.send(err)
+            })
+
+    }
+
+    static postEventStore(req, res){
+        let id = +req.params.id
+        let event = req.body.msg
+        Store.findByPk(id, {
+            include: [User]
+        })
+            .then(data => {
+                
+                let arrEmail = []
+                for (let i = 0; i < data.Users.length; i++) {
+                    arrEmail.push(data.Users[i].email)
+                }
+                const transporter = nodemailer.createTransport({
+                    service: 'gmail',
+                    auth: {
+                        user: 'mohammad.robiul.t.a@gmail.com',
+                        pass: 'tigjqvpfojamugus'
+                    }
+                })
+                const mailOptions = {
+                    from: 'mohammad.robiul.t.a@gmail.com',
+                    to: arrEmail.join(', '),
+                    subject: 'Update Event',
+                    text: `update event ${event}`
+                }
+                transporter.sendMail(mailOptions, (err, info) => {
+                    if (err) throw err;
+                    res.redirect('/stores/postEvent/succes')
+                });
+            })
+            .catch(err => {
+                console.log(err)
+                res.send(err)
+            })
+    }
+
+    static getPostEventSucces(req, res){
+        res.render('show-post-event')
     }
 }
 

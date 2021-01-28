@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User List</title>
+</head>
+<body>
+    <%- include('../navbar.ejs') %> 
+    <h1>Users List</h1>
+    <a href="/register"><button style="background-color: rgb(247, 247, 114);">Register</button></a>
+    <table border="1">
+        <tr>
+            <th>
+                Name
+            </th>
+            <th>
+                User Name
+            </th>
+            <th>
+                Email
+            </th>
+            <th>
+                Role
+            </th>
+            <th>
+                Actions
+            </th>
+        </tr>
+        <% for(let i = 0; i < data.length; i++) { %>
+            <tr>
+                <td><%= data[i].name%></td>
+                <td><%= data[i].user_name%></td>
+                <td><%= data[i].email%></td>
+                <td><%= data[i].role%></td>
+                <td>
+                    <a href="/users/<%=data[i].id%>/edit"><button style="background-color: yellow;">Edit</button></a>
+                    <a href="/users/<%=data[i].id%>/showmemberships"><button style="background-color: rgb(117, 245, 117);">Show Membership</button></a>
+                    <a href="/users/<%=data[i].id%>/joinmemberships"><button style="background-color: rgb(130, 130, 255);">Join Membership</button></a>
+                    <a href="/users/<%=data[i].id%>/unjoinmemberships"><button style="background-color: blue;"">UnJoin Membership</button></a>
+                    <a href="/users/<%=data[i].id%>/delete"><button style="background-color: red;"">Delete User</button></a>
+                </td>
+            </tr>
+        <% } %> 
+    </table>
+</body>
+</html>

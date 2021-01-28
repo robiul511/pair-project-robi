@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Form Add Store</title>
+</head>
+<body>
+    <%- include('../navbar.ejs') %> 
+    <h1>Add Store</h1>
+    <form action="/stores/add" method="POST">
+        <label for="">Name:</label><br>
+        <input type="text" id="name" name="name"><br>
+        <label for="">Type:</label><br>
+        <input type="text" id="type" name="type"><br>
+        <label for="">Informations:</label><br>
+        <input type="text" id="information" name="information"><br>
+        <label for="">Locations:</label><br>
+        <input type="text" id="location" name="location"><br>
+        <button style="background-color: cyan;">Add</button>
+    </form>
+    <a href="/stores"><button>Cancle</button></a>
+</body>
+</html>

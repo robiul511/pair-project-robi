@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Form Register</title>
+</head>
+<body>
+    <%- include('navbar.ejs') %> 
+    <h1>Register First</h1>
+    <form action="/register" method="POST">
+        <label for="">First Name:</label><br>
+        <input type="text" id="first_name" name="first_name"><br>
+        <label for="">Last Name:</label><br>
+        <input type="text" id="last_name" name="last_name"><br>
+        <label for="">User Name:</label><br>
+        <input type="text" id="user_name" name="user_name"><br>
+        <label for="">Email:</label><br>
+        <input type="text" id="email" name="email"><br>
+        <label for="">Password:</label><br>
+        <input type="password" id="password" name="password"><br>
+        <label for="">Role:</label><br>
+        <select name="role" id="role">
+            <option selected disabled>role</option>
+            <option value="admin">Admin</option>
+            <option value="customer">Customer</option>
+        </select><br>
+        <button style="background-color: rgb(37, 235, 37);">Register</button>
+    </form>
+    <a href="/"><button style="background-color: red;">Cancle</button></a>
+</body>
+</html>

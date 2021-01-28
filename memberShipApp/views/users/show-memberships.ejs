@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Show Memberships</title>
+</head>
+<body>
+    <%- include('../navbar.ejs') %> 
+    <h1><%= data.user_name %> </h1>
+    <table border="1">
+        <tr>
+            <th>Store Name</th>
+            <th>Type</th>
+            <th>Locations</th>
+        </tr>
+        <% for(let i = 0; i < data.Stores.length; i++) { %>
+            <tr>
+                <td>
+                    <%= data.Stores[i].name %> 
+                </td>
+                <td>
+                    <%= data.Stores[i].type %> 
+                </td>
+                <td>
+                    <%= data.Stores[i].location %> 
+                </td>
+            </tr>
+        <% } %> 
+    </table>
+    <a href="/users"><button style="background-color: red;">Back</button></a>
+</body>
+</html>

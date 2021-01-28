@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Form Unjoin Memberships</title>
+</head>
+<body>
+    <%- include('../navbar.ejs') %> 
+    <h1>Wich one do you want to Unjoin?</h1>
+    <form action="/users/<%= data.id %>/unjoinmemberships" method="POST">
+        <label for="">Sores</label>
+        <select name="StoreId">
+            <option disabled selected>pick one</option>
+            <% for(let i = 0; i < data.Stores.length; i++) { %>
+                <option value="<%= data.Stores[i].id %>"><%= data.Stores[i].name %></option>
+            <% } %>
+        </select>
+        <button style="background-color: red;">UnJoin</button>
+    </form>
+    <a href="/users"><button>Cancle</button></a>
+</body>
+</html>

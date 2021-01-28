@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <%- include('../navbar.ejs') %> 
+    <h1>Edit Users <%= data.user_name %> </h1>
+    <form action="/users/<%= data.id %>/edit" method="POST">
+        <label for="">First Name:</label><br>
+        <input type="text" name="first_name" id="first_name" value="<%= data.first_name%>"><br>
+        <label for="">Last Name:</label><br>
+        <input type="text" name="last_name" id="last_name" value="<%= data.last_name%>"><br>
+        <button style="background-color: rgb(88, 88, 241);">Edit</button>
+    </form>
+    <a href="/users"><button>Cancle</button></a>
+</body>
+</html>

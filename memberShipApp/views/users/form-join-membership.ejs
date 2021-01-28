@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Join Memberships</title>
+</head>
+<body>
+    <%- include('../navbar.ejs') %> 
+    <h1>form join membership</h1>
+    <form action="/users/<%= id %>/joinmemberships" method="POST">
+        <label for="">Stores</label><br>
+        <select name="StoreId" id="StoreId">
+            <option selected disabled>Stores</option>
+            <% for(let i = 0; i < data.length; i++) { %>
+                <option value="<%= data[i].id %> "><%= data[i].name %></option>
+            <% } %>
+        </select><br>
+        <button style="background-color: green;">Join</button>
+    </form>
+    <a href="/users"><button style="background-color: gray;">Cancle</button></a>
+</body>
+</html>

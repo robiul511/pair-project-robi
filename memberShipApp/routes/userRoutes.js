@@ -1,7 +1,8 @@
 const router = require('express').Router()
 const UserController = require('../controller/userController')
+const checkLogin = require('../middleWare/checkLogin')
 
-router.get('/', UserController.showUsers)
+router.get('/', checkLogin, UserController.showUsers)
 
 // ============ show memberships =========
 router.get('/:id/showmemberships', UserController.showMemberships)

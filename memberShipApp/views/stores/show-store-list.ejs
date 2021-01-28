@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title><%= title %></title>
+</head>
+<body>
+    <%- include('../navbar.ejs') %>
+
+    <div style="text-align: center;">
+        <h1><%= title %></h1>
+    </div>
+
+    <a href="/stores/add">
+        <button>ADD STORE</button>
+    </a>
+
+    <div>
+        <table border="1" style="width: 100%;">
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Type Store</th>
+                    <th>Information</th>
+                    <th>Location</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+
+            <tbody>
+                <% dataStores.forEach((element, idx) => { %>
+                    <tr style="background-color: silver;">
+                        <td><%= element.name %></td>
+                        <td><%= element.type %></td>
+                        <td><%= element.information %></td>
+                        <td><%= element.location %></td>
+                        <td style="text-align: center;">
+                            <a href="/stores/edit/<%= element.id %>">Edit</a> 
+                            <a href="/stores/delete/<%= element.id %>">Delete</a>
+                            <a href="/stores/postEvent/<%= element.id %>">Post Event</a></td>
+                    </tr>
+                <% }) %>
+            </tbody>
+        </table>
+    </div>
+
+</body>
+</html>

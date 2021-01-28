@@ -1,10 +1,10 @@
 const {User} = require('../models')
 const checkPassword = require('../helpers/function-check-password')
+const nodemailer = require('nodemailer')
 
 class Controller {
     static home(req, res) {
         res.render('home.ejs')
-        // res.send('masuk controller home')
     }
 
     // =========== register ==========
@@ -15,7 +15,24 @@ class Controller {
         let dataInput = req.body
         User.create(dataInput)
             .then(data => {
-                res.redirect('/users')
+                // console.log(data)
+                const transporter = nodemailer.createTransport({
+                    service: 'gmail',
+                    auth: {
+                        user: 'mohammad.robiul.t.a@gmail.com',
+                        pass: 'tigjqvpfojamugus'
+                    }
+                })
+                const mailOptions = {
+                    from: 'mohammad.robiul.t.a@gmail.com',
+                    to: data.email,
+                    subject: 'succses register',
+                    text: `${data.user_name} wlcome in memberships app, you can membering in many stores`
+                }
+                transporter.sendMail(mailOptions, (err, info) => {
+                    if (err) throw err;
+                    res.redirect('/users')
+                });
             })
             .catch(err => {
                 res.send(err)
@@ -38,12 +55,31 @@ class Controller {
         })
             .then(data => {
                 let comparePasword = checkPassword(dataInput.password, data.password)
-                console.log(comparePasword)
-                res.send(data)
+                if(!comparePasword) {
+                    res.redirect('/login')
+                } else {
+                    req.session.user = {
+                        isLogedIn : true,
+                        id: data.id,
+                        user_name: data.user_name,
+                        role: data.role
+                    }
+                    res.redirect('/')
+                }
             })
             .catch(err => {
                 res.send(err)
             })
+    }
+
+    // ============= log out ============
+    static logout(req, res) {
+        console.log(req.session.user)
+        req.session.user = {
+            isLogedIn: false
+        }
+        res.redirect('/')
+        // console.log(req.session)
     }
 }
 

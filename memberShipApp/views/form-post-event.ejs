@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Post Event</title>
+</head>
+<body>
+    <%- include('./partials/nav-bar.ejs') %>
+
+    <div style="text-align: center; margin-top: 5%;">
+        <h1>POST EVENT STORE</h1>
+    </div>
+
+
+    <div style="margin-top: 5%; margin-left: 35%;">
+        <form action="/stores/postEvent/" method="POST">
+
+        <label style="font-size: 30px;">Messages :</label> <br> <br>
+        <input type="text" name="msg" size="50px"> <br> <br>
+
+
+        <button style="border-radius: 12%; font-size: 20px;">Submit</button>
+    </form>
+    </div>
+
+
+</body>
+</html>

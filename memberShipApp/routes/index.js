@@ -13,6 +13,9 @@ router.post('/register', Controller.registerPost)
 router.get('/login', Controller.login)
 router.post('/login', Controller.loginPost)
 
+// ============ logout ===========
+router.get('/logout', Controller.logout)
+
 
 router.use('/stores', storeRouter)
 

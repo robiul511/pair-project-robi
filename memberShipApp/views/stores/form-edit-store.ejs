@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title><%= title %></title>
+</head>
+<body>
+    <%- include('../navbar.ejs') %>
+
+    <div>
+        <h1 style="text-align: center;"><% title %></h1>
+    </div>
+
+    <div>
+        <form action="/stores/edit/<%= data[0].id %>" method="POST" >
+            <label>Store Name :</label> <br>
+            <input type="text" name="name" placeholder="Input Store Name" value="<%= data[0].name %>"> <br> <br>
+
+            <label>Type Store</label> <br>
+            <select name="type">
+                <option disabled selected>-------SELECT-------</option>
+                <option value="fashion">Fashion Store</option>
+                <option value="electronic">Electronic Store</option>
+                <option value="sport">Sport Store</option>
+                <option value="furniture">Furniture Store</option>
+                <option value="online">Online Store</option>
+            </select> <br> <br>
+
+            <label>Store Information</label> <br>
+            <input type="text" name="information" placeholder="Input Your Store Details" value="<%= data[0].information %>"> <br> <br>
+
+            <label>Location</label> <br>
+            <input type="text" name="location" placeholder="Input Your Store Details" value="<%= data[0].location %>"> <br> <br>
+
+            <button type="submit">SUBMIT</button>
+
+            <a href="/stores">
+                <button type="button">CANCEL</button>
+            </a>
+            
+        </form>
+    </div>
+</body>
+</html>
